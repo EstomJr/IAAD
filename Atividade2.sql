@@ -5,38 +5,37 @@ drop schema if exists Startups_EstomJr;
 
 create schema Startups_EstomJr;
 
-create table Startup(
-	id_startup INT NOT NULL AUTO_INCREMENT,
-	nome_startup VARCHAR (45),
-	cidade_sede VARCHAR (20),
-	PRIMARY KEY(id_startup));
-    
-create table Programador(
-	id_programador INT NOT NULL AUTO_INCREMENT,
-	id_startup INT,
-    nome_programador VARCHAR(45),
-    genero CHAR(1),
-    data_nascimento DATE NOT NULL,
-    email VARCHAR(30) NOT NULL,
-	PRIMARY KEY (id_programador),
-    UNIQUE(email));
-    
-create table Programador_Linguagem(
-	id_programador INT NOT NULL AUTO_INCREMENT,
-	id_linguagem INT NOT NULL AUTO_INCREMENT
-);  
+create table STARTUP(
+    id_startup CHAR(5) PRIMARY KEY,
+    nome_startup VARCHAR(255) NOT NULL,
+    cidade_sede VARCHAR(255)
+);
 
-create table Linguagem_Programacao(
-	id_linguagem VARCHAR(2),
-	nome_linguagem VARCHAR(15),
-	ano_lancamento VARCHAR(4),
-	PRIMARY KEY (id_linguagem)); 
+create table PROGRAMADOR(
+    id_programador char(5) PRIMARY KEY,
+    id_startup char(5),
+    nome_programador VARCHAR(255) NOT NULL,
+    genero enum('M','F'),
+    data_nascimento DATE,
+    email varchar(255),
+    UNIQUE(email)
+);
+
+create table PROGRAMADOR_LINGUAGEM(
+	id_programador CHAR(5),
+	id_linguagem CHAR(5)
+);
+
+create table LINGUAGEM_PROGRAMACAO(
+	id_linguagem CHAR(5) PRIMARY KEY,
+	nome_linguagem VARCHAR(255) NOT NULL,
+	ano_lancamento YEAR
+);
 
 create table IDE(
 	id_ide INT NOT NULL AUTO_INCREMENT,
     id_linguagem INT NOT NULL AUTO_INCREMENT
 );
-
 
 insert into STARTUP values
 	(10001,'Tech4Toy','Porto Alegre'),

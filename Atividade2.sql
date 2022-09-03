@@ -5,18 +5,11 @@ drop schema if exists Startups_EstomJr;
 
 create schema Startups_EstomJr;
 
--- Criando as tabelas
 create table Startup(
 	id_startup INT NOT NULL AUTO_INCREMENT,
 	nome_startup VARCHAR (45),
 	cidade_sede VARCHAR (20),
 	PRIMARY KEY(id_startup));
-    
-create table Linguagem_Programacao(
-	id_linguagem VARCHAR(2),
-	nome_linguagem VARCHAR(15),
-	ano_lancamento VARCHAR(4),
-	PRIMARY KEY (id_linguagem));
     
 create table Programador(
 	id_programador INT NOT NULL AUTO_INCREMENT,
@@ -31,7 +24,13 @@ create table Programador(
 create table Programador_Linguagem(
 	id_programador INT NOT NULL AUTO_INCREMENT,
 	id_linguagem INT NOT NULL AUTO_INCREMENT
-);   
+);  
+
+create table Linguagem_Programacao(
+	id_linguagem VARCHAR(2),
+	nome_linguagem VARCHAR(15),
+	ano_lancamento VARCHAR(4),
+	PRIMARY KEY (id_linguagem)); 
 
 create table IDE(
 	id_ide INT NOT NULL AUTO_INCREMENT,
@@ -46,14 +45,6 @@ insert into STARTUP values
     (10004,'BSI Next Level','Recife'),
     (10005,'QualiHealth','São Paulo'),
     (10006,'ProEdu','Florianópolis');
-    
-insert into LINGUAGEM_PROGRAMACAO values
-	(20001,'Python','1991'),
-    (20002,'PHP','1995'),
-    (20003,'Java','1995'),
-    (20004,'C','1972'),
-    (20005,'JavaScript','1995'),
-    (20006,'Dart','2011');
     
 insert into Programador(id_startup, nome_programador, genero, data_nascimento, email)values
 	(10001,'João Pedro', 'M','1993-06-23', 'joaop@mail.com'),
@@ -74,13 +65,21 @@ insert into PROGRAMADOR_LINGUAGEM values
     (30007,20001),
     (30007,20002);
     
+insert into LINGUAGEM_PROGRAMACAO values
+	(20001,'Python','1991'),
+    (20002,'PHP','1995'),
+    (20003,'Java','1995'),
+    (20004,'C','1972'),
+    (20005,'JavaScript','1995'),
+    (20006,'Dart','2011');        
+
 insert into ID values 
-(1,20003),
-(2,20001),
-(3,20004),
-(4,20005),
-(5,20006),
-(6,20002);
+	(1,20003),
+	(2,20001),
+	(3,20004),
+	(4,20005),
+	(5,20006),
+	(6,20002);
 
 alter table Programador	ADD FOREIGN KEY(id_startup) REFERENCES Startup(id_startup) ON UPDATE CASCADE;
 alter table Programador_Linguagem ADD FOREIGN KEY(id_programador) REFERENCES Programador(id_programador) ON DELETE CASCADE;

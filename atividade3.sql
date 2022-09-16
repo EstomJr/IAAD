@@ -112,7 +112,6 @@ insert into AgendaConsulta values
     (10002, 20006, '99535751000', '2021-09-26 16:30:00'),
     (10005, 20004, '78694926040', '2022-10-02 17:00:00');
 
--- Aplicando a restrição de integridade referencial (chaves estrangeiras - FK)
 alter table Medicos ADD FOREIGN KEY(CodEspec) REFERENCES Especialidade(CodEspec) ON DELETE CASCADE ON UPDATE CASCADE;
 
 alter table AgendaConsulta ADD FOREIGN KEY (CpfPaciente) REFERENCES Paciente(CpfPaciente) ON DELETE RESTRICT;
